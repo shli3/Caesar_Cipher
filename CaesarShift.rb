@@ -9,6 +9,8 @@ def caesar_shift(phrase, diff)
         next
     elsif c > 47 && c < 58
         bounds = 48
+        chopped += ((((c - bounds + diff) % 10) + bounds).chr)
+        next
     else
         bounds = 97
     end
