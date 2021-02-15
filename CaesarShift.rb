@@ -1,21 +1,21 @@
 def caesar_shift(phrase, diff)
     chopped = ""
-    phrase.each_byte{ |c|
-    bounds = 0
-    if c > 64 && c < 91
-        bounds = 65
-    elsif c == 32
-        chopped += c.chr
-        next
-    elsif c > 47 && c < 58
-        bounds = 48
-        chopped += ((((c - bounds + diff) % 10) + bounds).chr)
-        next
-    else
-        bounds = 97
+    phrase.each_byte do |c|
+        bounds = 0
+        if c > 64 && c < 91
+            bounds = 65
+        elsif c > 47 && c < 58
+            bounds = 48
+            chopped += ((((c - bounds + diff) % 10) + bounds).chr)
+            next
+        elsif c > 96 && c < 123
+            bounds = 97
+        else
+            chopped += c.chr
+            next
+        end
+        chopped += ((((c - bounds + diff) % 26) + bounds).chr)
     end
-      chopped += ((((c - bounds + diff) % 26) + bounds).chr)
-    }
     chopped
 end
 
